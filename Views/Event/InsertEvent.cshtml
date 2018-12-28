@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "InsertEvent";
+}
+
+
+<h2>InsertEvent</h2>
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<div>
+    EventName:
+    <input type="text" id="EventName">
+</div>
+<br>
+
+
+
+<input type="file" id="myfile" /><br>
+
+<input type="button" id="Save" value="Save Data" />
+<script>
+
+    var ObjectEvent = {
+
+        EventName: '',
+        OrganizationId:''
+
+
+
+    };
+
+    function getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#myfile").on('change', function () {
+            var file = document.querySelector('input[type="file"]').files[0];
+            //    console.log($(this).val());
+
+
+
+            // var file = document.querySelector('#myfile > input[type="file"]').files[0];
+            getBase64(file).then(
+                function (data) {
+                    var abc = data.getBase64;
+
+
+
+
+
+             //       ObjectData.EventPhoto = data
+                    console.log('this is the string', abc);
+
+                }
+
+
+
+
+            );
+        });
+    });
+
+
+
+
+    $(document).ready(function () {
+        $("#Save").click(function () {
+
+            ObjectEvent.EventName = $('#EventName').val();
+
+            ObjectEvent.OrganizationId = '7C88CB02-BEF6-48C9-BBFE-29EA1A421A33';
+
+            $.ajax({
+                url: '/Event/Create',
+                type: 'POST',
+                data: ObjectEvent,
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                }
+            });
+        });
+    });
+</script>
+    -->

@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "UserLogin";
+}
+
+<h2>UserLogin</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+Username:<br />
+<input type="text" id="Username"><br><br>
+Password:<br>
+<input type="password" id="Password"><br ><br>
+
+<input type="button" id="Save" value="Login" />
+
+<script>
+
+    var UserLogin = {
+
+        UserName: '',
+        Password: ' ',
+
+    }
+    $(document).ready(function () {
+        $("#Save").click(function () {
+
+            UserLogin.UserName = $('#Username').val();
+            UserLogin.Password = $('#Password').val();
+
+
+
+
+
+
+
+
+
+            $.ajax({
+                url: '/Users/UserCheck',
+                type: 'POST',
+                data: UserLogin,
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                }
+            });
+        });
+    });
+
+
+
+
+</script>
+   

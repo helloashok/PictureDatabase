@@ -1,0 +1,152 @@
+﻿
+
+
+
+@{ ViewData["Title"] = "Insert"; }
+v
+
+
+
+<h2>Insert</h2>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    OrganizationName:<br>
+<input type="text" id="OrganizationName">
+
+<br><br>
+
+
+    PrimaryConactName:<br>
+<input type="text" id="PrimaryContactName">
+
+<br><br>
+
+
+    PrimaryContactEmail:<br>
+<input type="text" id="PrimaryContactEmail"><br><br>
+    PrimaryContactPhone:<br>
+<input type="text" id="PrimaryContactPhone"><br /><br>
+    CreatedBy:<br>
+<input type="text" id="CreatedBy"><br><br>
+    ModifiedBy:<br>
+<input type="text" id="ModifiedBy"><br><br>
+    UserName:<br>
+<input type="text" id="Username"><br><br>
+Email:<br>
+<input type="text" id="Email"><br><br>
+
+
+
+
+<input type="file" id="myfile" /><br>
+
+
+
+
+
+<input type="button" id="Save" value="Save Data" />
+
+<script>
+
+    var ObjectData = {
+
+        OrganizationName: '',
+        LicensePath: '',
+        PrimaryContactName: '',
+        PrimaryContactEmail: '',
+        PrimaryContactPhone: '',
+        CreatedDate: '',
+        CreatedBy: '',
+        Username: ' ',
+       Email:''
+
+
+
+    }
+
+    function getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#myfile").on('change', function () {
+            var file = document.querySelector('input[type="file"]').files[0];
+            //    console.log($(this).val());
+
+
+
+            // var file = document.querySelector('#myfile > input[type="file"]').files[0];
+            getBase64(file).then(
+                function (data) {
+                    var abc = data.getBase64;
+
+
+
+
+
+                    ObjectData.LicensePath = data;
+                    console.log('this is the string', abc);
+
+                }
+
+
+
+
+            );
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    $(document).ready(function () {
+        $("#Save").click(function () {
+
+            ObjectData.OrganizationName = $('#OrganizationName').val();
+            ObjectData.PrimaryContactName = $('#PrimaryContactName').val();
+
+            ObjectData.PrimaryContactEmail = $('#PrimaryContactEmail').val();
+
+
+            ObjectData.PrimaryContactPhone = $('#PrimaryContactPhone').val();
+            ObjectData.CreatedBy = $('#CreatedBy').val();
+            ObjectData.Username = $('#Username').val();
+            ObjectData.Email = $('#Email').val();
+
+
+
+            $.ajax({
+                url: '/Picture/Create',
+                type: 'POST',
+                data: ObjectData,
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                }
+            });
+        });
+    });
+
+
+
+</script>
+
+

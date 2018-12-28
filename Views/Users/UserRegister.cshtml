@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "UserRegister";
+}
+
+<h2>UserRegister</h2>
+<!--
+
+Username:
+<input type="text" id="Username"><br><br>
+ Password:<br>
+<input type="password" id="Password"><br /><br>
+
+<input type="password"  id="RetypePassword" />
+
+<input type="button" id="Save" value="Save Data" />
+
+<script>
+
+    var UserLogin = {
+
+       UserName: '',
+        Password: ' ',
+
+    }
+     $(document).ready(function () {
+         $("#Save").click(function () {
+
+             UserLogin.UserName = $('#Username').val();
+             UserLogin.Password = $('#Password').val();
+
+
+             $.ajax({
+                 url: '/Picture/Create',
+                 type: 'POST',
+                 data: UserLogin,
+                 success: function (data, textStatus, xhr) {
+                     console.log(data);
+                 },
+                 error: function (xhr, textStatus, errorThrown) {
+                     console.log(xhr);
+                 }
+             });
+         });
+     });
+
+
+
+
+</script>
+
+    -->
+
+

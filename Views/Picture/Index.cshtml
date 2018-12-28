@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+.
+<h2>UserLogin</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+
+<form>
+    <div class="g-recaptcha" id="bcd" data-sitekey="6LfgCoUUAAAAADuKI2yyhj0kxkptt7c1QyLXpIHy"   data-callback="recaptchaCallback" ></div>
+    <input type="text" id="P"><br><br>
+    <input type="submit" id="Save" value="Login" />
+</form>
+    <script>
+
+        var recaptchachecked;
+        function recaptchaCallback() {
+           
+            recaptchachecked = true;
+        }
+
+
+
+
+          
+        var Googlecaptcha = {
+
+            Captcha: '',
+            Something:''
+
+        }
+        $(document).ready(function () {
+            $("#Save").click(function () {
+             
+
+                    Googlecaptcha.Captcha = $('#g-recaptcha-response').val()
+
+                    Googlecaptcha.Something = $('#P').val()
+
+
+
+
+
+
+
+
+                    $.ajax({
+                        url: '/Users/CaptchaVerify',
+                        type: 'POST',
+                        data: Googlecaptcha,
+                        success: function (data, textStatus, xhr) {
+                            console.log(data);
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(xhr);
+                        }
+                    });
+                }
+
+                
+            });
+        });
+
+
+
+
+    </script>
+
+
+
+
+
+
+

@@ -12,33 +12,30 @@
 
 
 <form>
-    <div class="g-recaptcha" id="bcd" data-sitekey="6LfgCoUUAAAAADuKI2yyhj0kxkptt7c1QyLXpIHy"   data-callback="recaptchaCallback" ></div>
+    <div class="g-recaptcha" id="bcd"      data-sitekey="6LfgCoUUAAAAADuKI2yyhj0kxkptt7c1QyLXpIHy"    ></div>
     <input type="text" id="P"><br><br>
-    <input type="submit" id="Save" value="Login" />
+    <input type="submit" id="Save" />
 </form>
     <script>
 
-        var recaptchachecked;
-        function recaptchaCallback() {
-           
-            recaptchachecked = true;
-        }
-
+       
+     
 
 
 
           
         var Googlecaptcha = {
 
-            Captcha: '',
+            Captcha: $('#g-recaptcha-response').val(),
             Something:''
 
         }
+       
         $(document).ready(function () {
             $("#Save").click(function () {
              
 
-                    Googlecaptcha.Captcha = $('#g-recaptcha-response').val()
+                  Googlecaptcha.Captcha = $('#g-recaptcha-response').val()
 
                     Googlecaptcha.Something = $('#P').val()
 
@@ -60,7 +57,7 @@
                             console.log(xhr);
                         }
                     });
-                }
+               
 
                 
             });

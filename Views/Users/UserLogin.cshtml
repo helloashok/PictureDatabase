@@ -39,7 +39,8 @@ Password:<br>
                 type: 'POST',
                 data: UserLogin,
                 success: function (data, textStatus, xhr) {
-                    console.log(data);
+                    //save in localstorage
+                    let abc=localStorage.setItem("token", data.token);
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     console.log(xhr);

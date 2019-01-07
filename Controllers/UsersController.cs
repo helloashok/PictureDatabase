@@ -14,20 +14,30 @@ using MimeKit;
 using reCAPTCHA;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PictureDatabase.Controllers
 {
 
-
+    
     public class UsersController : Controller
+
+
     {
         private IRepository<Users> _userrepository;
+      
 
 
         public UsersController()
         {
             this._userrepository = new AllRepository<Users>();
-
+          
+           
 
         }
 
@@ -46,6 +56,8 @@ namespace PictureDatabase.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+        
+            var user = User.Identity.Name;
             return View();
         }
 
@@ -96,7 +108,7 @@ namespace PictureDatabase.Controllers
             try
             {
                 // TODO: Add update logic here
-
+              
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -127,6 +139,9 @@ namespace PictureDatabase.Controllers
                 return View();
             }
         }
+
+
+        [AllowAnonymous]
         public ActionResult UserLogin()
         {
 
@@ -139,51 +154,123 @@ namespace PictureDatabase.Controllers
 
 
         [HttpPost]
+       
+        [AllowAnonymous]
         public ActionResult UserCheck(Users user)
         {
 
+            
+
+      
+
+                string password = GenerateHash(user.Password);
+            // this is the starting of the code
 
 
-            try
+            var UserCount = _userrepository.FindByCondition(x => x.UserName == user.UserName && x.Password == password).FirstOrDefault();
+            if (UserCount != null)
             {
-                byte[] salt = new byte[8];
-                string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                      password: new string(user.Password),
-                      salt: salt,
-                      prf: KeyDerivationPrf.HMACSHA1,
-                      iterationCount: 10000,
-                      numBytesRequested: 256 / 8));
-                Console.WriteLine($"Hashed: {hashed}");
+                var secretKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("superSecretKey@345"));
+                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name,user.UserName)
+
+                };
+                var abc = claims;
+
+                var tokeOptions = new JwtSecurityToken(
+                    issuer: "http://localhost:44344",
+                    audience: "http://localhost:44344",
+                   
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(1),
+                    signingCredentials: signinCredentials
+                );
+
+
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+
+
+
+     
 
 
 
 
 
-                var UserCount = _userrepository.FindByCondition(x => x.UserName == user.UserName && x.Password == hashed).FirstOrDefault();
-                var check = UserCount;
-                return RedirectToAction(nameof(Index));
+
+
+
+             return Ok(new { Token = tokenString });
+                
+               
+               
             }
-            catch
+            else
             {
-                return View();
+                return Unauthorized();
             }
 
+           
+                
 
-        }
+
+
+
+
+
+
+
+
+
+
+                // this is the ending of the code i modified
+               
+              
+            //   return RedirectToAction(nameof(Index));
+            }
+            
+          
+
+       
         public ActionResult ChangePassword()
         {
+
+            //var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQmlqYXkiLCJleHAiOjE1NDY3MDUyMzUsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDQzNDQiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzQ0In0.1MyiherZuLTnV";
+            //var abc = new JwtSecurityTokenHandler().ReadJwtToken(token);
+            //var signature= abc.SignatureAlgorithm;
+            //var audience = abc.Audiences;
+            //var issuer = abc.Audiences;
+            //var checksignature = abc.RawSignature;
+            
+
+                
+            
+            //  var token = "QzpcVXNlcnNcVXNlclxzb3VyY2VccmVwb3NcUGljdHVyZURhdGFiYXNlXFBpY3R1cmVEYXRhYmFzZVxVc2Vyc1xDaGFuZ2VQYXNzd29yZA";
+            //   var something = new JwtSecurityToken(token).Claims;
+
+
+
+
+           
             return View();
         }
 
-        [HttpPost]
+     
+
+
+
+
+          [HttpPost]
+          [Authorize]
         public ActionResult ChangePassword(ChangePassword user)
         {
-
+            var identity = User.Identity.IsAuthenticated;
+            var Username = User.Identity.Name;
             String password = GenerateHash(user.OldPassword);
-
-
-            // the username must be replaced with the username of the user
-            var Updateuser = _userrepository.FindByCondition(x => x.UserName == "Prabhu_one" && x.Password == password).FirstOrDefault();
+            
+            var Updateuser = _userrepository.FindByCondition(x => x.UserName == Username && x.Password == password).FirstOrDefault();
             if (Updateuser != null)
             {
                 var newPassword = GenerateHash(user.NewPassword);
@@ -265,6 +352,7 @@ namespace PictureDatabase.Controllers
 
 
         //user gets to this view after clicking the link through mail service  
+        
         public ActionResult ResetPassword()
         {
 
@@ -370,6 +458,7 @@ namespace PictureDatabase.Controllers
 
         }
 
+     
     }
 
 

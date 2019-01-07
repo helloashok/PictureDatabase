@@ -3,50 +3,47 @@
 
 
 @{ ViewData["Title"] = "Insert"; }
-v
-
-
 
 <h2>Insert</h2>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<form>
     OrganizationName:<br>
-<input type="text" id="OrganizationName">
-
-<br><br>
-
-
+    <input type="text" id="OrganizationName"><br>
     PrimaryConactName:<br>
-<input type="text" id="PrimaryContactName">
-
-<br><br>
-
-
+    <input type="text" id="PrimaryContactName"><br>
     PrimaryContactEmail:<br>
-<input type="text" id="PrimaryContactEmail"><br><br>
+    <input type="text" id="PrimaryContactEmail"><br>
     PrimaryContactPhone:<br>
-<input type="text" id="PrimaryContactPhone"><br /><br>
+    <input type="text" id="PrimaryContactPhone"><br />
     CreatedBy:<br>
-<input type="text" id="CreatedBy"><br><br>
+    <input type="text" id="CreatedBy"><br>
     ModifiedBy:<br>
-<input type="text" id="ModifiedBy"><br><br>
+    <input type="text" id="ModifiedBy"><br>
     UserName:<br>
-<input type="text" id="Username"><br><br>
-Email:<br>
-<input type="text" id="Email"><br><br>
+    <input type="text" id="Username"><br>
+    Email:<br>
+    <input type="text" id="Email"><br>
+
+    <input type="file" id="myfile" /><br>
+    Password:<br>
+    <input type="text" id="password"><br>
+    ReTypePassword:<br>
+    <input type="text" id="repassword"><br>
+
+
+    Captcha:<br>
+    <div class="g-recaptcha" id="bcd" data-sitekey="6LfgCoUUAAAAADuKI2yyhj0kxkptt7c1QyLXpIHy"></div><br>
 
 
 
 
-<input type="file" id="myfile" /><br>
 
+    <input type="button" id="Save" value="Save Data" />
+</form>
 
-
-
-
-<input type="button" id="Save" value="Save Data" />
 
 <script>
 
@@ -60,7 +57,10 @@ Email:<br>
         CreatedDate: '',
         CreatedBy: '',
         Username: ' ',
-       Email:''
+        Email: '',
+        Captcha: '',
+        Password:''
+
 
 
 
@@ -128,6 +128,8 @@ Email:<br>
             ObjectData.CreatedBy = $('#CreatedBy').val();
             ObjectData.Username = $('#Username').val();
             ObjectData.Email = $('#Email').val();
+            ObjectData.Password = $('#password').val();
+            ObjectData.Captcha = $('#g-recaptcha-response').val()
 
 
 

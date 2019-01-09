@@ -14,6 +14,8 @@ namespace PictureDatabase.Models
         public string EventName { get; set; }
         public Guid OrganizationId { get; set; }
         public string EventPhoto { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public Organizations Organization { get; set; }
         public ICollection<Subscriptions> Subscriptions { get; set; }

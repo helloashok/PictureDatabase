@@ -20,7 +20,7 @@ using Newtonsoft.Json.Linq;
 
 namespace PictureDatabase.Controllers
 {
-
+ 
     public class PictureController : Controller, PasswordInterface
     {
 
@@ -370,4 +370,5 @@ namespace PictureDatabase.Controllers
 
 
     }
+  
 }

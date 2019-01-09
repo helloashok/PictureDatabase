@@ -23,7 +23,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PictureDatabase.Controllers
 {
-
+    
     
     public class UsersController : Controller
 
@@ -182,9 +182,9 @@ namespace PictureDatabase.Controllers
                 var tokeOptions = new JwtSecurityToken(
                     issuer: "http://localhost:44344",
                     audience: "http://localhost:44344",
-                   
+
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(1),
+                    expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signinCredentials
                 );
 
@@ -193,7 +193,6 @@ namespace PictureDatabase.Controllers
 
 
 
-     
 
 
 
@@ -202,10 +201,10 @@ namespace PictureDatabase.Controllers
 
 
 
-             return Ok(new { Token = tokenString });
-                
-               
-               
+
+            //    return Ok(new { Token = tokenString,RedirectUrl= "https://localhost:44334/Users/WelcomeScreen" });
+               return Ok(new { Token = tokenString });
+                //     return RedirectToAction("WelcomeScreen");
             }
             else
             {
@@ -287,7 +286,10 @@ namespace PictureDatabase.Controllers
             return View();
         }
 
-
+        public ActionResult WelcomeScreen()
+        {
+            return View();
+        }
 
 
         // this is the view when user clicks 
@@ -408,7 +410,7 @@ namespace PictureDatabase.Controllers
             return hashed;
         }
 
-
+     
 
 
 
@@ -461,7 +463,7 @@ namespace PictureDatabase.Controllers
      
     }
 
-
+  
 
  
 }

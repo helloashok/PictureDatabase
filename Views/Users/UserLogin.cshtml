@@ -40,7 +40,8 @@ Password:<br>
                 data: UserLogin,
                 success: function (data, textStatus, xhr) {
                     //save in localstorage
-                    let abc=localStorage.setItem("token", data.token);
+                    let abc = localStorage.setItem("token", data.token);
+                    window.location = "/Users/WelcomeScreen";
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     console.log(xhr);

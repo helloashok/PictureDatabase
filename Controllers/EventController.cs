@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PictureDatabase.Models;
@@ -11,10 +13,10 @@ using PictureDatabase.ViewModels;
 
 namespace PictureDatabase.Controllers
 {
-    /*
+
     public class EventController : Controller
     {
-
+    
         private IRepository<Events> _eventRepository;
 
 
@@ -42,29 +44,40 @@ namespace PictureDatabase.Controllers
 
         // POST: Event/Create
         [HttpPost]
-      //  [ValidateAntiForgeryToken]
-        public ActionResult Create(Events events)
+     [Authorize]
+  public ActionResult Create(InsertEvent eventview)
         {
-            try
-            {
-                //this is for the foreign key in events 
-                IRepository<Organizations> _organizationrepository;
-                String organization_name = "Government_agency";
-               _organizationrepository = new AllRepository<Organizations>();
-               var  organization     = _organizationrepository.FindByCondition(x => x.OrganizationName == organization_name).FirstOrDefault();
-                //here ends the event for organizatio id 
 
-                events.OrganizationId = organization.OrganizationId;
+            var identity = User.Identity.IsAuthenticated;
+            var Username = User.Identity.Name;
+            IRepository<Users> _userrepository;
+            _userrepository = new AllRepository<Users>();
+            var UserData = _userrepository.FindByCondition(x => x.UserName == Username).FirstOrDefault();
+            var OrganizationId = UserData.OrganizationId;
+           
+            
+            var  base64 = eventview.EventPhoto.Split(",")[1];
+            String temp = eventview.EventPhoto;
+            int Pos1 = temp.IndexOf('/') + 1;
+            int Pos2 = temp.IndexOf(';');
+            String ImageExtension = temp.Substring(Pos1, Pos2 - Pos1);
+            
+            byte[] imageBytes = Convert.FromBase64String(base64);
 
-                _eventRepository.Create(events);
+            System.IO.Directory.CreateDirectory(@"C:\\Users\\User\\source\\repos\\PictureDatabase\\PictureDatabase\\EventsPhoto\\" + Username);
+            var filepath = @"C:\\Users\\User\\source\\repos\\PictureDatabase\\PictureDatabase\\EventsPhoto\\" + Username;
+            var OriginalfilePath = Path.Combine(filepath, Guid.NewGuid() + "." + ImageExtension);
+            System.IO.File.WriteAllBytes(OriginalfilePath, imageBytes);
+            Events newEvent = new Events();
+            newEvent.EventName = eventview.EventName;
+            newEvent.StartDate = eventview.EventStartDate;
+            newEvent.EndDate = eventview.EventEndDate;
+            newEvent.OrganizationId = (Guid)OrganizationId;
+            newEvent.EventPhoto = OriginalfilePath;
+            _eventRepository.Create(newEvent);
+            
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch(Exception e )
-            {
-                var a = e;
-                return View();
-            }
+            return null;
         }
 
         // GET: Event/Edit/5
@@ -121,9 +134,9 @@ namespace PictureDatabase.Controllers
 
 
 
-
+       
     
 
     }
-    */
+
 }

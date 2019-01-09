@@ -5,17 +5,17 @@
 
 
 <h2>InsertEvent</h2>
-<!--
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<div>
-    EventName:
-    <input type="text" id="EventName">
-</div>
-<br>
 
-
-
+    EventName:<br>
+<input type="text" id="EventName"><br>
+    EventStartDate:<br>
+<input type="datetime" id="EventStartDate"><br>
+  EventEndDate:<br>
+<input type="datetime" id="EventEndDate"><br>
+    EventPhoto:<br>
 <input type="file" id="myfile" /><br>
 
 <input type="button" id="Save" value="Save Data" />
@@ -24,7 +24,10 @@
     var ObjectEvent = {
 
         EventName: '',
-        OrganizationId:''
+        EventPhoto:'',
+        EventStartDate: '',
+        EventEndDate: '',
+        EventExtension:''
 
 
 
@@ -49,15 +52,13 @@
 
             // var file = document.querySelector('#myfile > input[type="file"]').files[0];
             getBase64(file).then(
+                
                 function (data) {
-                    var abc = data.getBase64;
 
-
-
-
-
-             //       ObjectData.EventPhoto = data
-                    console.log('this is the string', abc);
+                    ObjectEvent.EventExtension = file.type
+                   
+                        ObjectEvent.EventPhoto = data
+                 
 
                 }
 
@@ -75,13 +76,18 @@
         $("#Save").click(function () {
 
             ObjectEvent.EventName = $('#EventName').val();
+            ObjectEvent.EventStartDate = $('#EventStartDate').val();
+            ObjectEvent.EventEndDate = $('#EventEndDate').val();
 
-            ObjectEvent.OrganizationId = '7C88CB02-BEF6-48C9-BBFE-29EA1A421A33';
 
             $.ajax({
                 url: '/Event/Create',
                 type: 'POST',
                 data: ObjectEvent,
+                beforeSend: function (xhr) {
+
+                    xhr.setRequestHeader("Authorization", 'Bearer ' + localStorage.getItem('token'));
+                },
                 success: function (data, textStatus, xhr) {
                     console.log(data);
                 },
@@ -92,4 +98,5 @@
         });
     });
 </script>
-    -->
+
+

@@ -37,10 +37,14 @@ namespace PictureDatabase.Models
 
                 entity.Property(e => e.EventId).HasDefaultValueSql("(newid())");
 
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
+
                 entity.Property(e => e.EventName)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.StartDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.Events)

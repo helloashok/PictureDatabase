@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PictureDatabase.Repository
 {
-   
+
   public class AllRepository<T> : IRepository<T> where T : class
     {
      private Picture_ContestContext pic;
@@ -67,6 +67,6 @@ namespace PictureDatabase.Repository
 
 }
 
-    
+
 
 }

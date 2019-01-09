@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="EventsPhoto\" />
     <Folder Include="Organizations\" />
   </ItemGroup>
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PictureDatabase.Repository
 {
+ 
     interface IRepository<T> where T:class
     {
         // this is for querying all the items in the table
@@ -39,4 +40,6 @@ namespace PictureDatabase.Repository
 
 
     }
+   
 }
+

@@ -1,154 +1,380 @@
 ﻿
 
+@{
+    ViewData["Title"] = "ShowAllEvents";
+}
 
 
-@{ ViewData["Title"] = "Insert"; }
 
-<h2>Insert</h2>
+@*<link href="../Content/dist/app.css" rel="stylesheet" type="text/css" />*@
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<form>
-    OrganizationName:<br>
-    <input type="text" id="OrganizationName"><br>
-    PrimaryConactName:<br>
-    <input type="text" id="PrimaryContactName"><br>
-    PrimaryContactEmail:<br>
-    <input type="text" id="PrimaryContactEmail"><br>
-    PrimaryContactPhone:<br>
-    <input type="text" id="PrimaryContactPhone"><br />
-    CreatedBy:<br>
-    <input type="text" id="CreatedBy"><br>
-    ModifiedBy:<br>
-    <input type="text" id="ModifiedBy"><br>
-    UserName:<br>
-    <input type="text" id="Username"><br>
-    Email:<br>
-    <input type="text" id="Email"><br>
-
-    <input type="file" id="myfile" /><br>
-    Password:<br>
-    <input type="text" id="password"><br>
-    ReTypePassword:<br>
-    <input type="text" id="repassword"><br>
 
 
-    Captcha:<br>
-    <div class="g-recaptcha" id="bcd" data-sitekey="6LfgCoUUAAAAADuKI2yyhj0kxkptt7c1QyLXpIHy"></div><br>
+
+
+@*<div ng-cloak ng-app="BlankApp"  >*@
+<div ng-cloak ng-app="BlankApp" ng-controller="MainCtrl">
 
 
 
 
 
-    <input type="button" id="Save" value="Save Data" />
-</form>
+
+    <div id="sidebar" class="sidenav">
+
+        <div style="background-color:#292826;height: 150px;text-align:center">
+          
+                <md-icon class="sidebar-cancel" onclick="closeNav()">cancel</md-icon>
+           
+
+            <img class="sidemenu-picture" src="~/assets/img/backgrounds/soch_college.png" />
+            
+            
+            <h2 style="color: white">PictureContest</h2>
+
+
+        </div>
+
+        <div>
+
+            <ul class="sidenu-ul">
+
+                <li class="sidemenu-li">
+
+                    <md-icon class="icons-sidemenu">event</md-icon>
+                    <span class="sidemenu-span">Event</span>
+
+                </li>
+
+                <li class="sidemenu-li">
+                    <md-icon class="icons-sidemenu">security </md-icon>
+                    <span class="sidemenu-span">ChangePassword</span>
+
+                </li>
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="main-body">
+
+
+        <div layout="column" style="width:100%;padding-bottom:150px; " ng-app="NutritionApp">
+
+
+            <md-toolbar class="main-toolbar">
+
+                <h2 class="ashok">
+                    <span class="toolbar-span"></span>
+                    @* <span>Username</span>*@
+
+                    <img class="sidemenu-picture" src="~/assets/img/pexels-photo-1866717.jpeg" />
+
+                </h2>
+
+            </md-toolbar>
+
+            <div class="register-header">
+             
+                <md-icon  onclick="openNav()" class="register-drag-indicator" >drag_indicator</md-icon>
+                   
+                <h1 class="register-header-span">Register Organization</h1>
+            </div>
+            <div class="register-content-div">
+
+                <form name="loginForm" style="width:100%">
+
+                    <md-content layout="column" style="background-color:white;width:100%" class="md-padding">
+
+
+
+
+
+                        <div class="register-div" layout="row">
+
+                            <md-input-container class="register-md-container">
+
+
+                                <label>OrganizationName</label>
+
+                                <input required type="text" class="register-input" ng-model="loginModel.username" name="username" />
+
+                                <md-icon>home</md-icon>
+
+                                <div ng-messages="loginForm.username.$error">
+                                    <div ng-message="required">This is required.</div>
+                                    <div ng-message="true">This is not the data</div>
+
+                                </div>
+
+                            </md-input-container>
+
+
+
+
+
+                            <md-input-container class="register-md-second-one">
+                                <label class="register-label">PrimaryContactName</label>
+                                <input required type="password" class="register-input" ng-model="loginModel.password" name="password" />
+                                <md-icon>assignment_ind</md-icon>
+                                <div ng-messages="loginForm.password.$error" role="alert">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="register-md-second-one">
+                                <label class="register-label">PrimaryContactEmail</label>
+                                <input required type="password" class="register-input" ng-model="loginModel.password" name="password" />
+                                <md-icon>contact_mail</md-icon>
+                                <div ng-messages="loginForm.password.$error" role="alert">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+
+
+
+
+                        </div>
+
+
+
+                        <div class="register-div" layout="row">
+                            <md-input-container class="register-md-container">
+
+
+                                <label>PrimaryContactPhone</label>
+
+                                <input required type="text" class="register-input" ng-model="loginModel.username" name="username" ng-pattern="'/^(([^<>()\[\]\.,;:\s@@\]+(\.[^<>()\[\]\.,;:\s@@\]+)*)|(\.+\))@@(([^<>()[\]\.,;:\s@@\]+\.)+[^<>()[\]\.,;:\s@@\]{2,})$/i'" />
+                                <md-icon>contact_phone</md-icon>
+                                <div ng-messages="loginForm.username.$error">
+                                    <div ng-message="required">This is required.</div>
+                                    <div ng-message="pattern">Invalid email address</div>
+
+                                </div>
+
+                            </md-input-container>
+
+
+
+
+
+                            <md-input-container class="register-md-second-one">
+                                <label class="register-label">Username</label>
+                                <input required type="password" class="register-input" ng-model="loginModel.password" name="password" />
+                                <md-icon>account_box</md-icon>
+                                <div ng-messages="loginForm.password.$error" role="alert">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container class="register-md-second-one">
+                                <label class="register-label">Password</label>
+                                @*ng-model="loginModel.something"*@
+                                <input required type={{reinputype}} class="register-input" ng-model="loginModel.something" name="pass" minlength="8" />
+
+                                <md-icon class="icon-password-visibility" ng-show="repassvisible" ng-click="showrepassword()">visibility_off</md-icon>
+                                <md-icon class="icon-password" ng-show="!repassvisible" ng-click="hiderepassword()">visibility</md-icon>
+
+
+
+                                <div ng-messages="loginForm.pass.$error" role="alert">
+                                    <div ng-message="required">This is required.</div>
+                                    <div ng-message="minlength">Password must be atleast 8 characters</div>
+                                </div>
+                            </md-input-container>
+
+
+                        </div>
+
+
+
+
+                        @*<div class="register-div">
+                                <md-input-container class="register-md-container">
+
+
+                                    <label>CreatedBy</label>
+
+                                    <input required type="text" class="register-input" ng-model="loginModel.username" name="username" />
+                                    <md-icon>account_circle</md-icon>
+
+                                    <div ng-messages="loginForm.username.$error">
+                                        <div ng-message="required">This is required.</div>
+
+                                    </div>
+
+                                </md-input-container>
+
+
+
+
+
+                                <md-input-container class="register-md-second-one">
+                                    <label class="register-label">ModifiedBy</label>
+                                    <input required type="password" class="register-input" ng-model="loginModel.password" name="password" />
+                                    <md-icon>account_circle</md-icon>
+                                    <div ng-messages="loginForm.password.$error" role="alert">
+                                        <div ng-message="required">This is required.</div>
+                                    </div>
+                            </div>*@
+                        <div class="register-div" layout="row">
+
+                            <md-input-container class="register-md-container">
+
+
+                                <label>Email</label>
+
+                                <input required type="text" class="register-input" ng-model="loginModel.username" name="username" />
+                                <md-icon>email</md-icon>
+                                <div ng-messages="loginForm.username.$error">
+                                    <div ng-message="required">This is required.</div>
+
+                                </div>
+
+                            </md-input-container>
+
+
+
+
+
+
+                            <md-input-container class="register-md-second-one">
+                                <label class="register-label">Retype Password</label>
+                                @* <input required type="password"  class="register-input" ng-model="userpassword" name="password" />*@
+                                <input required type={{inputype}} class="register-input" ng-model="loginModel.retypepassword" name="password" pattern="loginModel.something}" />
+
+
+
+                                <md-icon class="icon-password-visibility" ng-show="passwordvisible" ng-click="showpassword()">visibility_off</md-icon>
+                                <md-icon class="icon-password" ng-show="!passwordvisible" ng-click="hidepassword()">visibility</md-icon>
+
+                                <div ng-messages="loginForm.password.$error" role="alert">
+                                    <div ng-message="required">Password is required</div>
+
+                                    <div ng-message="pattern"> password must be same</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <div class="register-md-second-one-image">
+
+                                <input type='file' class="register-input-file-button" onchange="readPhoto(this);" />
+
+                                <img class="register-image" id="registerimgid" src="~/assets/img/icon.png" />
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="register-div">
+
+                            <div class="div-captcha">
+                                <div class="register-md-container">
+
+                                    <div class="g-recaptcha" id="bcd" data-sitekey="6LfgCoUUAAAAADuKI2yyhj0kxkptt7c1QyLXpIHy"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="register-div-button">
+
+                            <md-button type="submit" class="register-button">Register</md-button>
+
+                        </div>
+
+                    </md-content>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
 
 
 <script>
-
-    var ObjectData = {
-
-        OrganizationName: '',
-        LicensePath: '',
-        PrimaryContactName: '',
-        PrimaryContactEmail: '',
-        PrimaryContactPhone: '',
-        CreatedDate: '',
-        CreatedBy: '',
-        Username: ' ',
-        Email: '',
-        Captcha: '',
-        Password:''
-
-
-
-
+    function openNav() {
+        document.getElementById("sidebar").style.display = "block";
     }
 
-    function getBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
+    function closeNav() {
+        document.getElementById("sidebar").style.display = "none";
     }
-
-    $(document).ready(function () {
-
-        $("#myfile").on('change', function () {
-            var file = document.querySelector('input[type="file"]').files[0];
-            //    console.log($(this).val());
-
-
-
-            // var file = document.querySelector('#myfile > input[type="file"]').files[0];
-            getBase64(file).then(
-                function (data) {
-                    var abc = data.getBase64;
-
-
-
-
-
-                    ObjectData.LicensePath = data;
-                    console.log('this is the string', abc);
-
-                }
-
-
-
-
-            );
-        });
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-    $(document).ready(function () {
-        $("#Save").click(function () {
-
-            ObjectData.OrganizationName = $('#OrganizationName').val();
-            ObjectData.PrimaryContactName = $('#PrimaryContactName').val();
-
-            ObjectData.PrimaryContactEmail = $('#PrimaryContactEmail').val();
-
-
-            ObjectData.PrimaryContactPhone = $('#PrimaryContactPhone').val();
-            ObjectData.CreatedBy = $('#CreatedBy').val();
-            ObjectData.Username = $('#Username').val();
-            ObjectData.Email = $('#Email').val();
-            ObjectData.Password = $('#password').val();
-            ObjectData.Captcha = $('#g-recaptcha-response').val()
-
-
-
-            $.ajax({
-                url: '/Picture/Create',
-                type: 'POST',
-                data: ObjectData,
-                success: function (data, textStatus, xhr) {
-                    console.log(data);
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.log(xhr);
-                }
-            });
-        });
-    });
-
-
 
 </script>
+
+
+
+
+
+
+
+
+<script src="~/js/app.js"></script>
+<script src="~/Scripts/scripts/nutritionController.js"></script>
+<script src="~/Scripts/scripts/Inputfile.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+
+@*<script src="~/js/app.js"></script>
+    <script src="~/Scripts/scripts/nutritionController.js"></script>
+    <script src="~/Scripts/scripts/Inputfile.js"></script>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

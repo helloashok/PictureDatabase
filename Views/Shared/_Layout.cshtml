@@ -5,51 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PictureDatabase</title>
 
+    <link href="~/Scripts/angular/angular-material.min.css" rel="stylesheet" />
+
+    <link href="~/Scripts/scripts/md-data-table.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+    <link href="~/Content/dist/Dialogbox.css" rel="stylesheet" />
+
+    <link href="~/Content/dist/dialog-box-inputs.css" rel="stylesheet" />
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+
+
+        <link rel=" stylesheet" href="~/extcss/styles.css" />
+
+
+
     </environment>
+    <link href="~/Content/dist/app.css" rel="stylesheet" />
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    @*  <link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/master/angular-material.css">*@
+
+
+    <script src="~/Scripts/angular/angular.min.js"></script>
+    <script src="~/Scripts/angular/angular-animate.min.js"></script>
+    <script src="~/Scripts/angular/angular-aria.min.js"></script>
+    <script src="~/Scripts/angular/angular-material.min.js"></script>
+
+    <script src="~/Scripts/scripts/moment.js"></script>
+
+    <script src="~/Scripts/scripts/angularmoment.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="/Scripts/scripts/AppCtrl.js"></script>
+    <script src="~/Scripts/scripts/Inputfile.js"></script>
+
 </head>
+@*<body ng-cloak ng-app="BlankApp" ng-controller="MainCtrl">*@
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">PictureDatabase</a>
+
+    @*  <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="app-bar">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="app-bar">PictureDatabase</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
+        </nav>*@
+
+      @*<fury-root>
+    <div class="background">
+        <div class="wrapper">
+            <div class="ball-scale-multiple">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
-    </nav>
+    </div>
+    </fury-root>*@
 
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+       <hr />
         <footer>
             <p>&copy; 2018 - PictureDatabase</p>
         </footer>
     </div>
 
     <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
+      @*  <script src="~/lib/jquery/dist/jquery.js"></script>*@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>

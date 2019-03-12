@@ -1,0 +1,43 @@
+﻿.md-datepicker-input-container {
+
+    width:84%;
+    margin-left:0px;
+}
+.flex-gt-xs{
+    width:100%;
+   /*border:1px solid;*/
+}
+.md-button md-ink-ripple {
+    background-color: #0d82df!important;
+    color: white!important;
+    font-weight: bold!important;
+    padding-right: 30px;
+    padding-left: 30px
+}
+
+.search-bar {
+    background-color: rgb(33,150,243);
+    
+}
+
+    .search-bar * {
+        color: white !important;
+    }
+
+    .search-bar input {
+        border-bottom-color: white;
+    }
+
+.md-errors-spacer {
+    display: none;
+}
+
+.ng-pristine ng-valid md-input ng-touched{
+    max-width:none
+}
+
+
+
+
+
+   

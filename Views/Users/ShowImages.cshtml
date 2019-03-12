@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewData["Title"] = "ShowImages";
+}
+
+
+
+<style>
+    .carddemoBasicUsage .card-media {
+        background-color: #999999;
+    }
+</style>
+
+
+<div id="sidebar" class="sidenav">
+
+    <div style="background-color:#EC8B5E;height: 150px;text-align:center">
+
+        <md-icon class="sidebar-cancel" onclick="closeNav()">cancel</md-icon>
+
+
+        <img class="sidemenu-picture" src="~/assets/img/backgrounds/soch_college.png" />
+
+
+        <h2 style="color: white">PictureContest</h2>
+
+
+    </div>
+
+</div>
+
+<div class="main-body" ng-app="cardDemo1" ng-controller="somectrl">
+    <div class="md-toolbar-tools search-bar">
+        <md-input-container flex>
+            <label for="search" style="margin-bottom:0px">Search</label>
+
+            <input id="search-input" type="text" ng-model="test" />
+        </md-input-container>
+
+        <md-button class="md-icon-button" ng-click="checkagain()">
+            <md-icon>close</md-icon>
+        </md-button>
+    </div>
+
+
+
+    <md-content class="md-padding" layout-xs="column" layout="column">
+        <div id="abc" flex-xs flex-gt-xs="50" layout="column">
+
+            <md-card id="bcd" class="" data-ng-repeat="datas in somevalue|filter:test" ng-click="somefunction()">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Username:{{datas.userName}}</span>
+                        <span class="md-subhead">Large</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="show-images-imageview">
+                            <img style="width:179px" src={{}} />
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+
+            </md-card>
+
+        </div>
+
+    </md-content>
+
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+
+
+<script>
+    angular.module('cardDemo1', ['ngMaterial'])
+
+        .controller('somectrl', ['$scope', '$http', function ($scope, $http) {
+            $scope.limit = 3;
+            $scope.pageindex = 0;
+            $http.get("/Users/UsersList?pageindex=" + $scope.pageindex)
+                .then(function (response) {
+
+                    $scope.somevalue = response.data;
+
+
+
+
+
+
+                    // this is the length value for pagination
+                    //    $scope.length = response.data.length;
+
+
+
+                    console.log($scope.somevalue);
+
+                });
+        
+            $scope.testdata = {
+
+                data: [{
+                    count: "Ramesh",
+                    imagepath: "/assets/testwatermark/cc301755-93f3-474d-892e-d98bbad1c1d2.jpeg"
+                },
+                {
+                    count: "Suresh",
+                    imagepath: "/assets/testwatermark/landscape2.png"
+                },
+
+                {
+                    count: "Mahesh",
+
+                    imagepath: "/assets/testwatermark/landscape4watermark.png"
+                },
+                {
+                    count: "Mahesh",
+
+                    imagepath: "/assets/testwatermark/landscape4watermark.png"
+                },
+                {
+                    count: "Mahesh",
+
+                    imagepath: "/assets/testwatermark/landscape4watermark.png"
+                },
+
+                ]
+            };
+
+
+            $(window).scroll(function () {
+             
+
+                if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+                    $scope.pageindex = $scope.pageindex + 1;
+                    console.log("this is the value of count", $scope.pageindex);
+                    $http.get("/Users/UsersList?pageindex="+$scope.pageindex)
+                        .then(function (response) {
+                           
+                      //      $scope.somevalue =  response.data
+                           
+                            console.log("this is fter pushing", $scope.somevalue);
+                            Array.prototype.push.apply($scope.somevalue, response.data);
+
+
+                          
+
+
+                            // this is the length value for pagination
+                            //    $scope.length = response.data.length;
+
+
+
+                            console.log($scope.somevalue);
+
+                        });
+                }
+
+
+            });
+
+
+        }])
+                                //.config(function ($mdThemingProvider) {
+                                //    $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+                                //    $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+                                //    $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+                                //    $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+                                //});
+</script>

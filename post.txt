@@ -1,0 +1,118 @@
+<h1 style="padding-bottom:0px;padding-left:35%;">
+    <label style="font-size:50px;">UserLogin</label>
+
+</h1>
+
+<h2><md-icon class="material-icons" style="font-size:120px;padding-left:43%;padding-bottom:100px;padding-top:0px">account_circle</md-icon></h2>
+<body>
+    <script type="text/javascript">
+        var app = angular.module('myApp', ['ngMaterial']);
+        app.controller('newone', function ($scope) {
+            $scope.firstname = '';
+
+        });
+
+
+
+    </script>
+
+    <!--<md-icon class="material-icons" style="padding: 200px;font-size:200px ;width:50%">account_circle</md-icon>-->
+
+
+
+
+    <div ng-controller="newone" style="padding-left:40%">
+        <md-input-container style="align-content:center">
+            <md-icon class="material-icons" style="font-size:25px">account_circle</md-icon>
+            <label style="font-size:20px">Username</label>
+
+            <input type="text" id="Username" ng-model="firstname">
+
+
+        </md-input-container>
+    </div>
+
+
+
+
+
+
+
+
+    <div ng-controller="newone" style="padding-left:40%">
+        <md-input-container class="md-icon-float">
+
+
+            <md-icon class="material-icons" style="font-size:20px">security</md-icon>
+            <label style="font-size:25px">Password</label>
+            <input type="password" id="Password" required ng-model="firstname">
+
+        </md-input-container>
+    </div>
+    <div ng-controller="newone" style="padding-left:45% ;padding-bottom:20%">
+        <md-button class="md-accent md-raised" id="Save">SignIn</md-button>
+    </div>
+
+    <div ng-controller="newone" style="padding-left:45% ;padding-bottom:20%">
+        <a href="http://localhost:44344/Users/ForgetPassword">ForgetPassword</a>
+    </div>
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        var UserLogin = {
+
+            UserName: '',
+            Password: ' ',
+
+        }
+        $(document).ready(function () {
+            $("#Save").click(function () {
+
+                UserLogin.UserName = $('#Username').val();
+                UserLogin.Password = $('#Password').val();
+
+
+
+
+
+
+
+
+
+                $.ajax({
+                    url: '/Users/UserCheck',
+                    type: 'POST',
+                    data: UserLogin,
+                    success: function (data, textStatus, xhr) {
+                        //save in localstorage
+                        let abc = localStorage.setItem("token", data.token);
+                        window.location = "/Users/WelcomeScreen";
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log(xhr);
+                    }
+                });
+            });
+        });
+
+
+
+
+    </script>
+
+</body>

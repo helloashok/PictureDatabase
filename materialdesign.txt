@@ -1,0 +1,47 @@
+<h2>UserLogin</h2>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module('myApp', ['ngMaterial']);//dependency
+    app.controller('myCtrl', function ($scope) {
+        $scope.birthday = '';
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+    });
+    app.controller('myCtrl1', function ($scope) {
+        $scope.birthday = '';
+        $scope.password = '';
+       
+    });
+</script>
+<div class="wrapper" ng-controller="myCtrl" style="margin-top:100px;">
+    <!-- put ng-app in body-->
+    <md-datepicker ng-model="birthday"></md-datepicker>
+    <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.display" md-min-length="0" placeholder="Ex. Alaska" input-aria-labelledby="favoriteStateLabel" input-aria-describedby="autocompleteDetailedDescription">
+</div>
+
+<div ng-controller="myCtrl1">
+    <md-datepicker ng-model="birthday"></md-datepicker>
+</div>
+
+<div ng-controller="myCtrl1">
+    <md-input-container>
+        <label>Username</label>
+        <input type="text" ng-model="color">
+
+    </md-input-container>
+
+    <md-input-container>
+        <label>Password</label>
+        
+        <input type="password" ng-model="pas">
+
+    </md-input-container><br>
+
+
+                         <md-button class="md-no-focus">No Focus Style</md-button>
+</div>

@@ -1,0 +1,526 @@
+﻿
+<link href="~/Content/dist/dialog-box-inputs.css" rel="stylesheet" />
+
+@{
+    ViewData["Title"] = "ShowAllEvents";
+}
+<title>Nutrition</title>
+<link href="~/Scripts/angular/angular-material.min.css" rel="stylesheet" />
+
+<link href="~/Scripts/scripts/md-data-table.css" rel="stylesheet" />
+<link href="~/Content/dist/app.css" rel="stylesheet" />
+@*<link href="../Content/dist/app.css" rel="stylesheet" type="text/css" />*@
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link href="~/Content/dist/Dialogbox.css" rel="stylesheet" />
+
+<link href="~/Content/dist/dialog-box-inputs.css" rel="stylesheet" />
+<div ng-app="nutritionApp" ng-cloak>
+
+
+    <div layout="column" class="layout-column ">
+        <div layout="column" class="layout-column md-dialog-is-showing" ng-show="!tool.checked">
+            @*<md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <div class="md-title">Events Table</div>
+                    </div>
+                </md-toolbar>*@
+
+
+
+            <md-content layout="column" flex ng-controller="nutritionController">
+
+                <md-card>
+                    <md-toolbar class="md-table-toolbar md-default" ng-show="!search.searchclicked" aria-hidden="false">
+                        @*      <md-toolbar class="md-table-toolbar md-default" ng-show="!options.rowSelection || !selected.length">*@
+
+                        <div class="md-toolbar-tools search-bar">
+                            @* default class=md-toolbar-tools *@
+                            <span>EventsList</span>
+
+
+                            <span flex></span>
+                            @*<md-button class="md-icon-button" ng-click="loadStuff()">
+                                    <md-icon>refresh</md-icon>
+                                </md-button>*@
+                            <md-button class="md-icon-button" ng-click="check()">
+                                <md-icon class="add-icon-hover">search_circle</md-icon>
+                            </md-button>
+
+
+                            <md-button ng-click="showAdvanced(  )" style="min-width:0px">
+                                <md-icon class="add-icon-hover">add_circle</md-icon>
+                            </md-button>
+
+
+                        </div>
+                    </md-toolbar>
+                    @* this is the part of code that i am about to add *@
+
+
+
+                    <md-toolbar class="md-table-toolbar md-default" ng-show="search.searchclicked">
+                        <div class="md-toolbar-tools search-bar">
+
+                            @*   <span flex>Events</span>*@
+                            @*  <md-icon>search</md-icon>*@
+                            @*  <input type="text" style="padding-right:800px" />*@
+
+                            @*<md-input-container>
+                                    <label>Search</label>
+                                    <input type="text" ng-model="test">
+                                </md-input-container>*@
+
+                            @*<md-button class="md-icon-button" ng-click="checkagain()">
+                                    <md-icon>cancel</md-icon>
+                                </md-button>*@
+
+
+
+                            <!-- Input Text -->
+                            <md-input-container flex>
+                                <label for="search" style="margin-bottom:0px">Search</label>
+
+                                <input id="search-input" type="text" ng-model="test" />
+                            </md-input-container>
+
+                            <md-button class="md-icon-button" ng-click="checkagain()">
+                                <md-icon>close</md-icon>
+                            </md-button>
+
+
+
+
+                        </div>
+
+
+
+                    </md-toolbar>
+
+
+
+
+
+
+
+
+                    @* here ends the code *@
+
+
+
+
+
+                    <md-toolbar class="md-table-toolbar alternate" ng-show=" " aria-hidden="true">
+                        @*  <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">*@
+
+                        <div class="md-toolbar-tools">
+                            <span>{{selected.length}} {{selected.length > 1 ? 'Events' : 'Event'}} selected</span>
+                            <span flex></span>
+                            <md-button class="md-icon-button">
+                                <md-icon>delete</md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+                    <md-table-container>
+
+
+
+
+                        @*   <table data-md-table data-md-row-select="options.rowSelection" data-md-on-select="log" md-on-deselect="deselect" data-ng-model="selected" md-progress="promise">*@
+                        @* multiple="{{options.multiSelect}}" *@
+
+                        <table data-md-table data-md-on-select="log" md-on-deselect="deselect" data-ng-model="selected" md-progress="promise">
+                            <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
+
+                                <tr md-row>
+
+                                    <th md-column md:order:by="eventName"><span>Name</span></th>
+
+
+                                    <th md-column md:order:by="startDate"><span>StartDate</span></th>
+
+
+                                    <th md-column md:order:by="endDate"><span>EndDate</span></th>
+
+
+                                    <th md-column><span>Action</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+
+                                @* <tr md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect" data-ng-repeat="Event in Events.data|filter:test|  orderBy: query.order   |limitTo:query.limit:(query.page - 1) * query.limit">*@
+                                <tr md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect"
+                                    data-ng-repeat="event in somevalue|filter:test|  orderBy: query.order   |limitTo:query.limit:(query.page - 1) * query.limit">
+
+                                    @*<tr md-select-id="name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect" data-ng-repeat="event in somevalue|filter:test|  orderBy: query.order   |limitTo:query.limit:(query.page - 1) * query.limit">*@
+
+
+
+                                    <td md-cell>{{event.eventName}}</td>
+                                    <td md-cell>{{event.formattedStartDate}}</td>
+                                    <td md-cell>{{event.formattedEndDate}}</td>
+
+                                    <td md-cell>
+                                        <md-button ng-click="showEdit(event)" class="md-icon-button">
+                                            <md-icon class="icon-hover">edit</md-icon>
+                                        </md-button>
+                                        <md-button ng-click="showTabDialog(event,$index)" class="md-icon-button">
+                                            <md-icon class="icon-hover">delete</md-icon>
+
+                                        </md-button>
+
+
+                                    </td>
+
+
+
+
+
+
+
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+
+                    <data-md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{somevalue.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="page">
+                        <div class="page-select">
+                            <div class="label">Page:</div>
+
+                            <md-select virtual-page-select="" total="233" class="md-table-select ng-pristine ng-untouched ng-valid" ng-model="$pagination.page" md-container-class="md-pagination-select" ng-change="$pagination.onPaginationChange()" ng-disabled="$pagination.disabled" aria-label="Page: 1" role="listbox" aria-expanded="false" aria-multiselectable="false" id="select_2" aria-owns="select_container_3" aria-disabled="false" tabindex="0" aria-invalid="false">
+                                <md-select-value class="md-select-value" id="select_value_label_0">
+                                    <span>
+                                        <span class="md-text">1</span>
+                                    </span>
+                                    <span class="md-select-icon" aria-hidden="true"></span>
+                                </md-select-value><div class="md-select-menu-container md-pagination-select" aria-hidden="true" id="select_container_3">
+
+                                </div>
+                            </md-select>
+                        </div>
+
+
+                    </data-md-table-pagination>
+
+
+
+
+
+                </md-card>
+
+            </md-content>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script type="text/ng-template" id="dialog1.tmpl.html">
+        <md-dialog aria-label="Mango (Fruit)">
+            <form ng-cloak style="width:100%">
+
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Create Event</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+
+                            <md-icon class="material-icons">clear</md-icon>
+
+
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <md-dialog-content>
+                    <div class="md-dialog-content">
+                        @*<div>*@
+
+                        <div flex-gt-xs style="width:100%">
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <label>EventName</label>
+                                @* style="margin-left: 25px;" *@
+                                <md-icon class="account-icon">account_circle</md-icon>
+                                <input id="EventName" class="input-insert" ng-model="user.name" type="text">
+                                @* style="margin-left: 20px;width:90%" *@
+                            </md-input-container>
+
+                        </div>
+
+                        <div flex-gt-xs class="div-datepicker">
+
+                            <md-datepicker class="" ng-model="StartDate" md-placeholder="EventStartDate"></md-datepicker>
+
+                        </div>
+
+
+                        <div flex-gt-xs style="padding-top:30px;width:100%">
+                            <md-datepicker ng-model="EndDate" md-placeholder="EventEndDate"></md-datepicker>
+
+                        </div>
+
+
+                        @*  <div flex-gt-xs style="padding-top:30px;width:100%">*@
+
+                        <div flex-gt-xs class="input-file-container" ng-show="false">
+                            <div>
+                                @*    <div style="padding-top:30px">*@
+                                @*   <md-icon class="md-choose-file">insert_photo</md-icon>*@
+                                <md-icon class="md-icon">insert_photo</md-icon>
+
+                                <input type='file' />
+
+
+                                @*<input type="file" style="display:inline" />*@
+                                @*<input type="file" ng-model="selectedphoto" class="input-file" />*@
+                                @* <div  layout-margin layout-padding>*@
+                            </div>
+
+                        </div>
+
+                        @*modified*@
+
+                        <div flex-gt-xs style="width:100%">
+                            <md-input-container class="watermark-inputcont ">
+                                <!-- Use floating label instead of placeholder -->
+                                <label>EventWatermark</label>
+                                @* style="margin-left: 25px;" *@
+                                <md-icon class="account-icon">account_circle</md-icon>
+                                <input class="input-insert" ng-model="user.name" type="text">
+                                @* style="margin-left: 20px;width:90%" *@
+                            </md-input-container>
+
+                        </div>
+
+                        @*end modified*@
+
+                        <div flex-gt-xs class="input-file-container" ng-show="true ">
+
+                            <choose-file>
+                                <div>
+                                    <md-button class="md-datepicker-button md-icon-button md-button md-ink-ripple">
+                                        @*<md-button id="uploadButton" class="md-fab md-mini"> *@
+
+                                        <md-icon class="file-attachment">attach_file</md-icon>
+                                    </md-button>
+
+                                    <input id="fileInput" type="file" onchange="readURL(this);" ng-model="confirmed" class="ng-hide" >
+
+                                    <md-input-container>
+                                        @*class="input-file-button"*@
+                                        <input type="text" class="input-field-edit " ng-model="fileName" id="imgInp" disabled>
+
+
+                                    </md-input-container>
+                                </div>
+                            </choose-file>
+
+
+
+                            <div style="text-align:center">
+
+                                <img src="data:image/*;base64,{{photo}}" ng-show="!photovalue" />
+                                <img id="blah" src="" alt="yourimage" ng-show="photovalue" />
+                            </div>
+
+                            @*modification start*@
+
+
+                            <choose-logo>
+                                <div>
+                                    <md-button class="md-datepicker-button md-icon-button md-button md-ink-ripple">
+                                        @*<md-button id="uploadButton" class="md-fab md-mini"> *@
+
+                                        <md-icon class="file-attachment">attach_file</md-icon>
+                                    </md-button>
+
+                                    <input id="LogoInput" type="file" onchange="readLogo(this)" class="ng-hide">
+
+                                    <md-input-container>
+                                        @*class="input-file-button"*@
+                                        <input type="text" class="input-field-edit " ng-model="logoName" id="imgInp" disabled>
+
+
+                                    </md-input-container>
+                                </div>
+                            </choose-logo>
+                            <div style="text-align:center">
+
+
+                                <img id="image" src="" alt="yourimage" />
+                            </div>
+
+
+                            @*modification end*@
+
+                        </div>
+
+
+                        <div flex-gt-xs class="flexforbutton">
+
+                            <md-button  class="md-btn-submit" ng-click="Callapi()" >Create</md-button>
+
+                        </div>
+
+                    </div>
+                </md-dialog-content>
+
+
+
+
+            </form>
+        </md-dialog>
+    </script>
+
+    <script type="text/ng-template" id="tabDialog.tmpl.html">
+
+
+        <md-dialog aria-label="Mango (Fruit)">
+            <form ng-cloak>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Confirm</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+
+                            <md-icon class="add-icon-hover">clear</md-icon>
+
+
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <md-dialog-content>
+                    <div class="md-dialog-content">
+                        <div>
+                            <h2>Are you sure you want to delete ?</h2>
+
+                            <md-button class="conformation-button" ng-click="something()">Yes</md-button>
+
+                            <md-button class="conformation-button" ng-click="cancel()">No</md-button>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </md-dialog-content>
+
+
+
+
+            </form>
+        </md-dialog>
+
+
+    </script>
+
+
+
+
+
+</div>
+
+<script>
+
+    var ObjectEvent = {
+
+        EventName: '',
+        OrganizationId: ''
+
+
+
+    };
+
+    function getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#fileInput").on('change', function () {
+            var file = document.querySelector('input[type="file"]').files[0];
+            //    console.log($(this).val());
+
+
+
+            // var file = document.querySelector('#myfile > input[type="file"]').files[0];
+            getBase64(file).then(
+                function (data) {
+                    var abc = data.getBase64;
+
+
+
+
+
+                    //       ObjectData.EventPhoto = data
+                    console.log('this is the string', abc);
+
+                }
+
+
+
+
+            );
+        });
+    });
+
+
+
+
+    $(document).ready(function () {
+        $("#save").click(function () {
+
+            ObjectEvent.EventName = $('#EventName').val();
+
+            ObjectEvent.OrganizationId = '7C88CB02-BEF6-48C9-BBFE-29EA1A421A33';
+
+            $.ajax({
+                url: '/Event/Create',
+                type: 'POST',
+                data: ObjectEvent,
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                }
+            });
+        });
+    });
+</script>
+
+
+
+<script src="~/Scripts/scripts/app.js"></script>
+
+<script src="~/Scripts/scripts/nutritionController.js"></script>
+
+<script src="~/Scripts/scripts/md-data-table.js"></script>
+<script src="~/Scripts/scripts/addItemController.js"></script>
+
+
+
+
+
+
+
+

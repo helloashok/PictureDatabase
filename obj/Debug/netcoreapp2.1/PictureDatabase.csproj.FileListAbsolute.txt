@@ -40,3 +40,6 @@ C:\Users\User\source\repos\PictureDatabase\PictureDatabase\obj\Debug\netcoreapp2
 C:\Users\User\source\repos\PictureDatabase\PictureDatabase\obj\Debug\netcoreapp2.1\Razor\Views\Users\ResetPassword.g.cshtml.cs
 C:\Users\User\source\repos\PictureDatabase\PictureDatabase\obj\Debug\netcoreapp2.1\Razor\Views\Users\LinkExpire.g.cshtml.cs
 C:\Users\User\source\repos\PictureDatabase\PictureDatabase\obj\Debug\netcoreapp2.1\Razor\Views\Users\WelcomeScreen.g.cshtml.cs
+C:\Users\User\source\repos\PictureDatabase\PictureDatabase\obj\Debug\netcoreapp2.1\Razor\Views\Users\Display.g.cshtml.cs
+C:\Users\User\source\repos\PictureDatabase\PictureDatabase\obj\Debug\netcoreapp2.1\Razor\Views\Event\ShowAllEvents.g.cshtml.cs
+C:\Users\User\source\repos\PictureDatabase\PictureDatabase\obj\Debug\netcoreapp2.1\Razor\Views\Users\ShowImages.g.cshtml.cs

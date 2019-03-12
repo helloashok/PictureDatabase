@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "dda5da7c4f8af21fdfe8d530ac5b6f62ece9173c"
+    "signature": "a06c19d735dfaeb998c40b06da38c7b0215af390"
   },
   "compilationOptions": {
     "defines": [
@@ -24,11 +24,16 @@
     ".NETCoreApp,Version=v2.1": {
       "PictureDatabase/1.0.0": {
         "dependencies": {
+          "Angular.Material": "1.1.7",
+          "AngularJS.Core": "1.7.5",
           "MailKit": "2.1.1",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1",
+          "SixLabors.ImageSharp": "1.0.0-beta0006",
+          "System-Web-Helpers.dll": "1.0.0",
+          "System.Drawing.Common": "4.5.1",
           "reCAPTCHA.AspNetCore": "2.1.1"
         },
         "runtime": {
@@ -38,6 +43,24 @@
           "PictureDatabase.dll": {}
         }
       },
+      "Angular.Material/1.1.7": {
+        "dependencies": {
+          "AngularJS.Animate": "1.6.4",
+          "AngularJS.Aria": "1.6.4",
+          "AngularJS.Core": "1.7.5"
+        }
+      },
+      "AngularJS.Animate/1.6.4": {
+        "dependencies": {
+          "AngularJS.Core": "1.7.5"
+        }
+      },
+      "AngularJS.Aria/1.6.4": {
+        "dependencies": {
+          "AngularJS.Core": "1.7.5"
+        }
+      },
+      "AngularJS.Core/1.7.5": {},
       "MailKit/2.1.1": {
         "dependencies": {
           "MimeKit": "2.1.1",
@@ -392,6 +415,25 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "Microsoft.Win32.SystemEvents/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        }
+      },
       "MimeKit/2.1.1": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
@@ -464,6 +506,46 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.1.0",
           "Microsoft.NETCore.Targets": "2.1.0"
+        }
+      },
+      "SixLabors.Core/1.0.0-beta0007": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.5.1"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/SixLabors.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/SixLabors.Core.dll": {}
+        }
+      },
+      "SixLabors.ImageSharp/1.0.0-beta0006": {
+        "dependencies": {
+          "SixLabors.Core": "1.0.0-beta0007",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.1"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/SixLabors.ImageSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/SixLabors.ImageSharp.dll": {}
+        }
+      },
+      "System-Web-Helpers.dll/1.0.0": {
+        "runtime": {
+          "lib/Net40/System.Web.Helpers.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/Net40/System.Web.Helpers.dll": {}
         }
       },
       "System.Composition/1.0.31": {
@@ -599,6 +681,35 @@
           "System.Runtime.Extensions": "4.3.0",
           "System.Text.RegularExpressions": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "System.Drawing.Common/4.5.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.0",
+          "Microsoft.Win32.SystemEvents": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "4.0.0.1",
+            "fileVersion": "4.6.26919.2"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.1",
+            "fileVersion": "4.6.26919.2"
+          },
+          "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.1",
+            "fileVersion": "4.6.26919.2"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Drawing.Common.dll": {}
         }
       },
       "System.Linq.Parallel/4.3.0": {
@@ -3711,6 +3822,34 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Angular.Material/1.1.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GXgl4Jek9xhlCK5EBvNVQiYYythLrQoIAX2y7imkry3fxoCmXnpqCq3V1bf3hBLSky33vp3QsqpykGIWESvodw==",
+      "path": "angular.material/1.1.7",
+      "hashPath": "angular.material.1.1.7.nupkg.sha512"
+    },
+    "AngularJS.Animate/1.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/hdgvszWqvNJpri/ued6y/GxhXFGW8gN9PR1cYfEn4cdS5S/MO+efIXs0gEC/wVJmVUwdHnD9QJ5AKf0vQLVJw==",
+      "path": "angularjs.animate/1.6.4",
+      "hashPath": "angularjs.animate.1.6.4.nupkg.sha512"
+    },
+    "AngularJS.Aria/1.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZyiEjCvdDhacvCEeOgBAqXOwO79l6MnZHXuQ4CnQtBhHLA9IFnfWUaG8D693DYFeyGYQrG6htbe4zIO5EeoCWw==",
+      "path": "angularjs.aria/1.6.4",
+      "hashPath": "angularjs.aria.1.6.4.nupkg.sha512"
+    },
+    "AngularJS.Core/1.7.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XZra4+bKEbk46kenOXa4vOJONJZuqOFQsGZ5E1wXvlwKWXVazk2F9lFyGpydxQkNAVhbM9Yo5Vf7Evn/x2qGgA==",
+      "path": "angularjs.core/1.7.5",
+      "hashPath": "angularjs.core.1.7.5.nupkg.sha512"
+    },
     "MailKit/2.1.1": {
       "type": "package",
       "serviceable": true,
@@ -3844,6 +3983,13 @@
       "path": "microsoft.win32.primitives/4.3.0",
       "hashPath": "microsoft.win32.primitives.4.3.0.nupkg.sha512"
     },
+    "Microsoft.Win32.SystemEvents/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K2TAr07pgl/m/J9ed3cmAzx0SD55kYuVfBG6SPRIH/ELTh/D2qGrjOWDQJo7r+LZl1nO2Nkl0UAQBUt6S2ewqQ==",
+      "path": "microsoft.win32.systemevents/4.5.0",
+      "hashPath": "microsoft.win32.systemevents.4.5.0.nupkg.sha512"
+    },
     "MimeKit/2.1.1": {
       "type": "package",
       "serviceable": true,
@@ -3885,6 +4031,27 @@
       "sha512": "sha512-M2nN92ePS8BgQ2oi6Jj3PlTUzadYSIWLdZrHY1n1ZcW9o4wAQQ6W+aQ2lfq1ysZQfVCgDwY58alUdowrzezztg==",
       "path": "runtime.native.system.net.security/4.3.0",
       "hashPath": "runtime.native.system.net.security.4.3.0.nupkg.sha512"
+    },
+    "SixLabors.Core/1.0.0-beta0007": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-c6n9x8AM5DN6WbbqHb2iDV7nwqmlViLp+y9dxerLoeFgXOfgSdsrAX4/gb8hQN3GamHc5pd3zm/OpCCH5W08LQ==",
+      "path": "sixlabors.core/1.0.0-beta0007",
+      "hashPath": "sixlabors.core.1.0.0-beta0007.nupkg.sha512"
+    },
+    "SixLabors.ImageSharp/1.0.0-beta0006": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HvkLryWzF+522z5l//cvmwge1rlCAxezePUzD/RLE1Xggirbk8SYZaMaHtiTiATQgRG8YUOpu27q4scR2hbUPw==",
+      "path": "sixlabors.imagesharp/1.0.0-beta0006",
+      "hashPath": "sixlabors.imagesharp.1.0.0-beta0006.nupkg.sha512"
+    },
+    "System-Web-Helpers.dll/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mz0gHWF/xs+twyyn13puXGUCy5pFcE2JZMgLJfyxXmDhf4+z69UXaDP7A40HOuq0SzHQnRt9/XV2di3rBMl/Gw==",
+      "path": "system-web-helpers.dll/1.0.0",
+      "hashPath": "system-web-helpers.dll.1.0.0.nupkg.sha512"
     },
     "System.Composition/1.0.31": {
       "type": "package",
@@ -3934,6 +4101,13 @@
       "sha512": "sha512-OGX4ifHI67s/2KRrXGMmEjmszCptbhWS4BieBdiBPl/8pn0A1xPMx0Gn0dKK0zKtEaelYNh5M7M5lCZL0EA4eA==",
       "path": "system.data.common/4.3.0",
       "hashPath": "system.data.common.4.3.0.nupkg.sha512"
+    },
+    "System.Drawing.Common/4.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m3c7Fe/CS/jZ/nLBrxCCh52dYiC33GPbGfcF4CiVukb8+p121XUTHxs6sYKbWfvDVD8JssHcM+HVFLtzl3X3Xw==",
+      "path": "system.drawing.common/4.5.1",
+      "hashPath": "system.drawing.common.4.5.1.nupkg.sha512"
     },
     "System.Linq.Parallel/4.3.0": {
       "type": "package",

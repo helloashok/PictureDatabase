@@ -20,6 +20,7 @@ namespace PictureDatabase.Models
         public Organizations Organization { get; set; }
         public Users User { get; set; }
         public Users InverseUser { get; set; }
-        public ICollection<Subscriptions> Subscriptions { get; set; }
+        public ICollection<Subscriptions> Subscriptions {
+            get; set; }
     }
 }

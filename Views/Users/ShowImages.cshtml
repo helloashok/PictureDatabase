@@ -5,11 +5,11 @@
 
 
 
-<style>
+@*<style>
     .carddemoBasicUsage .card-media {
         background-color: #999999;
     }
-</style>
+</style>*@
 
 
 <div id="sidebar" class="sidenav">
@@ -30,148 +30,211 @@
 </div>
 
 <div class="main-body" ng-app="cardDemo1" ng-controller="somectrl">
+    @*<div class="md-toolbar-tools search-bar">
+            <md-input-container flex>
+                <label for="search" style="margin-bottom:0px">Search</label>
+
+                <input id="search-input" type="text" ng-model="test" />
+            </md-input-container>
+
+            <md-button class="md-icon-button" ng-click="checkagain()">
+                <md-icon>close</md-icon>
+            </md-button>
+        </div>*@
     <div class="md-toolbar-tools search-bar">
-        <md-input-container flex>
-            <label for="search" style="margin-bottom:0px">Search</label>
+        <md-icon class="search-icon-imageshow">search</md-icon>
+        <md-autocomplete class="autocomplete" md-floating-label="Search..." md-selected-item="selectedItem" md-search-text="searchText" md-items="item in results" md-item-text="item.userName" md-no-cache="true" placeholder="search" id="source" md-selected-item-change="selectedItemChange(item)">
 
-            <input id="search-input" type="text" ng-model="test" />
-        </md-input-container>
+            <md-item-template>
+                <span md-highlight-text="searchText">{{item.userName}}</span>
+                <span>({{item.userEmail}})</span>
+            </md-item-template>
+            <md-not-found>
+                No matches found.
+            </md-not-found>
+        </md-autocomplete>
+   
 
-        <md-button class="md-icon-button" ng-click="checkagain()">
-            <md-icon>close</md-icon>
-        </md-button>
+
+
     </div>
+  
 
 
 
     <md-content class="md-padding" layout-xs="column" layout="column">
         <div id="abc" flex-xs flex-gt-xs="50" layout="column">
 
-            <md-card id="bcd" class="" data-ng-repeat="datas in somevalue|filter:test" ng-click="somefunction()">
+            <md-card id="bcd" class="md-card-repeater" data-ng-repeat="datas in somevalue" >
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">Username:{{datas.userName}}</span>
-                        <span class="md-subhead">Large</span>
+                        <span class="md-subhead"></span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="show-images-imageview">
-                            <img style="width:179px" src={{}} />
+                            <img style="width:179px" src="/assets/img/testimages/pexels-photo-1866717.jpeg" />
+
                         </div>
                     </md-card-title-media>
                 </md-card-title>
 
             </md-card>
 
+            <div style="text-align:center">
+                <md-progress-circular class="loading-circle" md-mode="indeterminate" md-diameter="80px" ng-show="loading"></md-progress-circular>
+            </div>
         </div>
 
     </md-content>
 
 </div>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
 
 
-<script>
-    angular.module('cardDemo1', ['ngMaterial'])
+    <script>
+        angular.module('cardDemo1', ['ngMaterial'])
 
-        .controller('somectrl', ['$scope', '$http', function ($scope, $http) {
-            $scope.limit = 3;
-            $scope.pageindex = 0;
-            $http.get("/Users/UsersList?pageindex=" + $scope.pageindex)
-                .then(function (response) {
-
-                    $scope.somevalue = response.data;
-
-
-
-
-
-
-                    // this is the length value for pagination
-                    //    $scope.length = response.data.length;
-
-
-
-                    console.log($scope.somevalue);
-
-                });
-        
-            $scope.testdata = {
-
-                data: [{
-                    count: "Ramesh",
-                    imagepath: "/assets/testwatermark/cc301755-93f3-474d-892e-d98bbad1c1d2.jpeg"
-                },
-                {
-                    count: "Suresh",
-                    imagepath: "/assets/testwatermark/landscape2.png"
-                },
-
-                {
-                    count: "Mahesh",
-
-                    imagepath: "/assets/testwatermark/landscape4watermark.png"
-                },
-                {
-                    count: "Mahesh",
-
-                    imagepath: "/assets/testwatermark/landscape4watermark.png"
-                },
-                {
-                    count: "Mahesh",
-
-                    imagepath: "/assets/testwatermark/landscape4watermark.png"
-                },
-
-                ]
-            };
-
-
-            $(window).scroll(function () {
+            .controller('somectrl', ['$scope', '$http', function ($scope, $http) {
+                $scope.limit = 3;
              
+                // this variable is for scrollbar 
+                $scope.pageindex = 0;
+                // this variable abc is to hold(copy) the value of somevalue 
+                $scope.abc = {};
+                $scope.pageindexcopy = 0;
 
-                if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-                    $scope.pageindex = $scope.pageindex + 1;
-                    console.log("this is the value of count", $scope.pageindex);
-                    $http.get("/Users/UsersList?pageindex="+$scope.pageindex)
-                        .then(function (response) {
-                           
-                      //      $scope.somevalue =  response.data
-                           
-                            console.log("this is fter pushing", $scope.somevalue);
-                            Array.prototype.push.apply($scope.somevalue, response.data);
-
-
-                          
-
-
-                            // this is the length value for pagination
-                            //    $scope.length = response.data.length;
+                $('.autocomplete').find('.ng-scope').hide();
+                $scope.selectedvalue = false;
 
 
 
-                            console.log($scope.somevalue);
+                // this loads the data to show images while page index is 0 (when scrollbar is not scrolled)
+                $http.get("/Users/UsersList?pageindex=" + $scope.pageindex)
+                    .then(function (response) {
 
-                        });
+                        $scope.somevalue = response.data;
+                        $scope.abc = angular.copy($scope.somevalue);
+                       
+                    });
+                // this variable controlls the hide/show of the circular progressbar 
+                $scope.loading = true;
+              
+                //for autocomplete
+                const $source = document.querySelector('#source');
+             
+         
+                $scope.cancelall = function () {
+                    console.log("cancelled");
+                };
+
+         
+                const onkeychange = function (e) {
+                    $scope.loading = false;
+                    
+                    //check if the autocomplete value is greater than 0
+                    if (e.target.value.length > 0) {
+
+                       
+
+                        var keyword = e.target.value;
+
+
+                        
+                        $http.get("/Users/UsersList?pageindex=-1&keyword=" + keyword)
+                            .then(function (response) {
+                                //variable to loop for autocomplete 
+                                $scope.results = response.data;
+
+                            });
+
+                      
+                        //$('#source').find(":button").click(function () {
+                        //    console.log("clicked");
+                        //    angular.copy($scope.abc, $scope.somevalue);
+
+
+                        //});
+
+                    }
+                    else {
+                        // div elements to default after autocomplete cleared
+                        angular.copy($scope.abc, $scope.somevalue);
+                        angular.copy($scope.pageindexcopy, $scope.pageindex);
+                        $scope.pageindex = 0;
+                    }
+                   
+                };
+
+                //this is for adding the autocomplete source 
+                $source.addEventListener('input', onkeychange);
+
+                // for actions after item is selected in autcomplete 
+                $scope.selectedItemChange = function (item) {
+                  
+                   
+                    $scope.array = [];
+                    $scope.array.push(item);
+                    $scope.arrayresult = $scope.array;
+                    $scope.somevalue = $scope.arrayresult;
+                  
+                  
+                    
+                   
+                  
+                    
                 }
 
 
-            });
+                //// this loads the data to show images while page index is 0 (when scrollbar is not scrolled)
+                //$http.get("/Users/UsersList?pageindex=" + $scope.pageindex)
+                //    .then(function (response) {
+
+                //        $scope.somevalue = response.data;
+                //        $scope.abc = angular.copy($scope.somevalue);
+                       
+                //   });
+                //// this variable controlls the hide/show of the circular progressbar 
+                //$scope.loading = true;
+            
+              
+        
+                // this is a function to check the position of scrollbar 
+                $(window).scroll(function () {
+                  
+                        //check whether the scrollbar reaches the end 
+                        if ((document.body.scrollHeight - (window.innerHeight + window.scrollY)) <= 20)
+                         {
+                       
+                        $scope.pageindex = $scope.pageindex + 1;
+                       
+                        $http.get("/Users/UsersList?pageindex=" + $scope.pageindex)
+                            .then(function (response) {
+                             
+                                if (response.data.length == 0) {
+
+                                    $scope.loading = false;
+                                }
+                               
+                                Array.prototype.push.apply($scope.somevalue, response.data);
+                              
+                                
+                            });
+                    }
 
 
-        }])
-                                //.config(function ($mdThemingProvider) {
-                                //    $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
-                                //    $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
-                                //    $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
-                                //    $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
-                                //});
-</script>
+                });
+
+
+            }])
+                               
+    </script>

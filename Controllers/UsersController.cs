@@ -46,26 +46,36 @@ namespace PictureDatabase.Controllers
         // GET: Users
         [HttpGet]
         public ActionResult UsersList()
-        {
+      {
             // get the page index 
-            var pageindex= HttpContext.Request.Query["pageindex"].ToString();
-            int pagenumber = Convert.ToInt32(pageindex);
+
+            var pageindex = HttpContext.Request.Query["pageindex"].ToString();
+           
+                int pagenumber = Convert.ToInt32(pageindex);
+            
             var Userlist = _userrepository.FindAll();
 
-            if (pageindex != "0")
+            if (pagenumber > 0)
             {
 
                 var length = Userlist.Count();
 
-                var something = Userlist.Skip(pagenumber*4).Take(4);
+                var something = Userlist.Skip(pagenumber * 4).Take(4);
 
                 return Json(something);
+
             }
-            else
+            else if(pagenumber== 0)
 
             {
                 var something = Userlist.Take(4);
 
+                return Json(something);
+            }
+            else
+            {
+                var keyword = HttpContext.Request.Query["keyword"].ToString();
+              var something=  _userrepository.FindByCondition(x => x.UserName.StartsWith(keyword));
                 return Json(something);
             }
 

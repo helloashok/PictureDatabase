@@ -59,7 +59,7 @@ using PictureDatabase.Models;
             WriteLiteral("\r\n\r\n\r\n<h1>hello</h1>\r\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.css\">\r\n\r\n");
             EndContext();
             BeginContext(185, 2290, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6be60df622404c14b1eac90587cfbb8d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "400eb9f994f6488c8799e3768bf21e20", async() => {
                 BeginContext(191, 2277, true);
                 WriteLiteral(@"
     <div class=""page"" fxLayout=""column"" fxLayoutAlign=""center center"">
